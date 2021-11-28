@@ -127,7 +127,7 @@ public class RedAutoDuck extends LinearOpMode {
                 delay(1.6);
                 liftMotor.setPower(0.1);
                 dropoffTraj = traj3;
-
+// help desk bad
 //                Trajectory duckTraj = drive.trajectoryBuilder(traj3.end())
 //                        .lineTo(new Vector2d(-.777, -14.896)).build();
 //                drive.followTrajectory(duckTraj);

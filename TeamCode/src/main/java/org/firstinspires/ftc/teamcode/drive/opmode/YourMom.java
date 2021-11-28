@@ -16,6 +16,7 @@ public class YourMom extends LinearOpMode{
     @Override
     public void runOpMode() {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        telemetry.addLine("help desk bad");
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         Pose2d startPose = new Pose2d(-33.51, 10.25, 0);
