@@ -10,16 +10,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
-/**
- * This opmode demonstrates how one would implement field centric control using
- * `SampleMecanumDrive.java`. This file is essentially just `TeleOpDrive.java` with the addition of
- * field centric control. To achieve field centric control, the only modification one needs is to
- * rotate the input vector by the current heading before passing it into the inverse kinematics.
- * <p>
- * See lines 42-57.
- */
+
 @TeleOp(group = "drive")
-public class TeleOpFieldCentric extends LinearOpMode {
+public class TeleOpNONFieldCentric extends LinearOpMode {
     double bucketPosition = 0.0;
 
 
@@ -60,7 +53,6 @@ public class TeleOpFieldCentric extends LinearOpMode {
 
         // Retrieve our pose from the PoseStorage.currentPose static field
         // See AutoTransferPose.java for further details
-        drive.setPoseEstimate(drive.getPoseEstimate());
 
         waitForStart();
 
@@ -70,29 +62,24 @@ public class TeleOpFieldCentric extends LinearOpMode {
         if (isStopRequested()) return;
         while (opModeIsActive() && !isStopRequested()) {
             // Read pose
-            Pose2d poseEstimate = drive.getPoseEstimate();
 
             // Create a vector from the gamepad x/y inputs
             // Then, rotate that vector by the inverse of that heading
             Vector2d input = new Vector2d(
                     -gamepad1.left_stick_y,
                     -gamepad1.left_stick_x
-            ).rotated(-poseEstimate.getHeading()+subtractHeading);
-            if(gamepad1.right_stick_button)
-                subtractHeading = drive.getPoseEstimate().getHeading();
+            );
             if(gamepad1.right_bumper)
                 bucketPosition = 0.65;
             if(gamepad1.left_bumper)
                 bucketPosition = 0.2;
-            if(gamepad1.dpad_up&&bucketPosition>0) {
+            if(gamepad1.dpad_down&&bucketPosition>0) {
                 bucketPosition -= 0.005;
             }
-            if(gamepad1.dpad_down&&bucketPosition<1) {
+            if(gamepad1.dpad_up&&bucketPosition<1) {
                 bucketPosition += 0.005;
             }
             bucketServo.setPosition(bucketPosition);
-
-
             //Controller 2
             if(gamepad2.b)
                 intakeMotor.setPower(spinnerSpeed);
@@ -100,10 +87,10 @@ public class TeleOpFieldCentric extends LinearOpMode {
                 intakeMotor.setPower(0);
             if(gamepad2.x)
                 intakeMotor.setPower(-1);
-            if(gamepad2.dpad_right)
-                spinnerMotor.setPower(0.75);
-            else if(gamepad2.dpad_left)
-                spinnerMotor.setPower(-0.75);
+            if(gamepad2.right_bumper)
+                spinnerMotor.setPower(1);
+            else if(gamepad2.left_bumper)
+                spinnerMotor.setPower(-1);
             else
                 spinnerMotor.setPower(0);
             if(gamepad2.y)
@@ -131,11 +118,10 @@ public class TeleOpFieldCentric extends LinearOpMode {
             drive.update();
 
             // Print pose to telemetry
-            telemetry.addData("x", poseEstimate.getX());
-            telemetry.addData("y", poseEstimate.getY());
-            telemetry.addData("bucketPos", bucketPosition);
-            telemetry.addData("heading", poseEstimate.getHeading());
             telemetry.addData("speed", spinnerSpeed);
+            telemetry.addData("bucketPos", bucketPosition);
+            telemetry.addData("x", gamepad1.left_stick_x);
+            telemetry.addData("y", gamepad1.left_stick_y);
             telemetry.update();
         }
     }
