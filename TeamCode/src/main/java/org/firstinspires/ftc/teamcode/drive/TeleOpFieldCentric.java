@@ -64,7 +64,7 @@ public class TeleOpFieldCentric extends LinearOpMode {
 
         waitForStart();
 
-        //bucketServo.setPosition(0);
+        bucketServo.setPosition(0.2);
 
 
         if (isStopRequested()) return;
@@ -81,9 +81,9 @@ public class TeleOpFieldCentric extends LinearOpMode {
             if(gamepad1.right_stick_button)
                 subtractHeading = drive.getPoseEstimate().getHeading();
             if(gamepad1.right_bumper)
-                bucketServo.setPosition(0.95);
+                bucketServo.setPosition(0.65);
             if(gamepad1.left_bumper)
-                bucketServo.setPosition(0);
+                bucketServo.setPosition(0.2);
 
 
             //Controller 2

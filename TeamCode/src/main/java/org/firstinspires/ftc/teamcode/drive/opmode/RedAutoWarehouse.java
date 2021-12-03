@@ -82,9 +82,18 @@ public class RedAutoWarehouse extends LinearOpMode {
         switch (detector.getLocation()){
             case LEFT:
                 drive.setPoseEstimate(startPose);
-                Trajectory traj1 = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-17.775, -23.116)).build();
-                drive.followTrajectory(traj1);
+                Trajectory dropoffBlock = drive.trajectoryBuilder(startPose)
+                        .lineTo(new Vector2d(-15.775, -23.116)).build();
+                drive.followTrajectory(dropoffBlock);
+                bucketServo.setPosition(0.68);
+                delay(2.3);
+                bucketServo.setPosition(0.2);
+                Trajectory turnToWall = drive.trajectoryBuilder(dropoffBlock.end())
+                        .lineToLinearHeading(new Pose2d(-0, -23.116, Math.toRadians(90))).build();
+                drive.followTrajectory(turnToWall);
+                Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
+                        .lineTo(new Vector2d(0, 25)).build();
+                drive.followTrajectory(moveToWarehouse);
                 break;
             case MIDDLE:
                 break;
