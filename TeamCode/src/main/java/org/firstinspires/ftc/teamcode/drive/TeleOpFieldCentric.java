@@ -95,7 +95,7 @@ public class TeleOpFieldCentric extends LinearOpMode {
 
             //Controller 2
             if(gamepad2.b)
-                intakeMotor.setPower(spinnerSpeed);
+                intakeMotor.setPower(1);
             if(!gamepad2.b&&!gamepad2.x)
                 intakeMotor.setPower(0);
             if(gamepad2.x)
