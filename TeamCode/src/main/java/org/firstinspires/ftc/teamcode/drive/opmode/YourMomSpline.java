@@ -11,6 +11,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 @Config
+@Disabled
 @Autonomous(group = "drive")
 public class YourMomSpline extends LinearOpMode{
     @Override

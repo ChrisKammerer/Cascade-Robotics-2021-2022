@@ -18,8 +18,8 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Red Duck Side", group = "Auto")
-public class RedAutoDuck extends LinearOpMode {
+@Autonomous(name = "Blue Duck Side", group = "Auto")
+public class BlueAutoDuck extends LinearOpMode {
     private ElapsedTime period = new ElapsedTime();
     private ElapsedTime runtime = new ElapsedTime();
     public void runToPosition(int count, DcMotor motor, double speed){
@@ -73,31 +73,30 @@ public class RedAutoDuck extends LinearOpMode {
 
         waitForStart();
         DcMotor liftMotor = hardwareMap.dcMotor.get("liftMotor");
-        DcMotor spinnerMotor = hardwareMap.dcMotor.get("frontEncoder");
         Servo bucketServo = hardwareMap.servo.get("bucket");
+        DcMotor spinnerMotor = hardwareMap.dcMotor.get("frontEncoder");
         bucketServo.setPosition(0);
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         Pose2d startPose = new Pose2d(0,0,0);
-
         Trajectory dropoffBlock = null;
-        double liftMotorTime = 0.0;
 
+        double liftMotorTime = 0.0;
         switch (detector.getLocation()){
             case LEFT:
                 liftMotorTime = 0.0;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-17, 23.262)).build();
+                        .lineTo(new Vector2d(-16, -22.116)).build();
                 break;
             case MIDDLE:
                 liftMotorTime = 1;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.675, 24.762)).build();
+                        .lineTo(new Vector2d(-14, -22.116)).build();
                 break;
             case RIGHT:
                 liftMotorTime = 2.2;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.175, 24.762)).build();
+                        .lineTo(new Vector2d(-14, -22.116)).build();
                 break;
         }
         drive.setPoseEstimate(startPose);
@@ -120,14 +119,14 @@ public class RedAutoDuck extends LinearOpMode {
             bucketServo.setPosition(0.2);
         }
         Trajectory moveToSpinner = drive.trajectoryBuilder(dropoffBlock.end())
-                .lineTo(new Vector2d(-1.266, -18.4)).build();
+                .lineToLinearHeading(new Pose2d(-4.794, 27.7, Math.toRadians(90))).build();
         drive.followTrajectory(moveToSpinner);
-        delay(0.3);
-        spinnerMotor.setPower(-0.5);
+        delay(0.2);
+        spinnerMotor.setPower(0.5);
         delay(3.5);
         spinnerMotor.setPower(0);
         Trajectory park = drive.trajectoryBuilder(moveToSpinner.end())
-                .lineTo(new Vector2d(-27.005, -18.333)).build();
+                .lineToLinearHeading(new Pose2d(-29.3, 29, Math.toRadians(90))).build();
         drive.followTrajectory(park);
     }
 }
