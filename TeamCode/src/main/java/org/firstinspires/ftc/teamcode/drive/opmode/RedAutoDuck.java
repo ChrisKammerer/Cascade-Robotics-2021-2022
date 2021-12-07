@@ -85,17 +85,17 @@ public class RedAutoDuck extends LinearOpMode {
 
         switch (detector.getLocation()){
             case LEFT:
-                liftMotorTime = 0.0;
+                liftMotorTime = 0;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-17, 23.262)).build();
                 break;
             case MIDDLE:
-                liftMotorTime = 1;
+                liftMotorTime = 0.55;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14.675, 24.762)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 2.2;
+                liftMotorTime = 1.15;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14.175, 24.762)).build();
                 break;

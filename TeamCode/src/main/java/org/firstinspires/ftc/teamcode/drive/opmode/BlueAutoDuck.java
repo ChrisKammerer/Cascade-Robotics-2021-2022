@@ -89,12 +89,12 @@ public class BlueAutoDuck extends LinearOpMode {
                         .lineTo(new Vector2d(-16, -22.116)).build();
                 break;
             case MIDDLE:
-                liftMotorTime = 1;
+                liftMotorTime = .55;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14, -22.116)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 2.2;
+                liftMotorTime = 1.15;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14, -22.116)).build();
                 break;

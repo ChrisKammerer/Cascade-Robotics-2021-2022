@@ -87,10 +87,10 @@ public class RedAutoWarehouse extends LinearOpMode {
                 liftMotorTime = 0.0;
                 break;
             case MIDDLE:
-                liftMotorTime = 1;
+                liftMotorTime = .55;
                 break;
             case RIGHT:
-                liftMotorTime = 2.2;
+                liftMotorTime = 1.15;
                 break;
         }
         drive.setPoseEstimate(startPose);
