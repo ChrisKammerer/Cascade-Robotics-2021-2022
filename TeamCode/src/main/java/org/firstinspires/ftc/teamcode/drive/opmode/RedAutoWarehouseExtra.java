@@ -151,6 +151,5 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
                 .lineTo(new Vector2d(0, 44)).build();
         drive.followTrajectory(moveToWarehouse2);
 
-
     }
 }

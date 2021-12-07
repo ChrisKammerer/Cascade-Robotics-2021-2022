@@ -124,5 +124,8 @@ public class BlueAutoWarehouse extends LinearOpMode {
         Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
                 .lineTo(new Vector2d(-1, -27.8)).build();
         drive.followTrajectory(moveToWarehouse);
+        Trajectory finishedWarehouse = drive.trajectoryBuilder(moveToWarehouse.end())
+                .lineToLinearHeading(new Pose2d(-25, -25, Math.toRadians(162))).build();
+        drive.followTrajectory(finishedWarehouse);
     }
 }

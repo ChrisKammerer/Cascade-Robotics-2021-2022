@@ -123,7 +123,7 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(0, 23.116, Math.toRadians(-90))).build();
         drive.followTrajectory(turnToWall);
         Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
-                .lineTo(new Vector2d(2, -27.8)).build();
+                .lineTo(new Vector2d(2, -29.8)).build();
         drive.followTrajectory(moveToWarehouse);
         intakeMotor.setPower(1);
         delay(1.7);
