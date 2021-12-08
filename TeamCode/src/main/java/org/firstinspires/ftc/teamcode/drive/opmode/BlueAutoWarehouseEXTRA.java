@@ -85,17 +85,17 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
 
         switch (detector.getLocation()){
             case LEFT:
-                liftMotorTime = 0.0;
+                liftMotorTime = 0.80;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-17, 22.262)).build();
+                        .lineTo(new Vector2d(-11.456, 28.090)).build();
                 break;
             case MIDDLE:
-                liftMotorTime = 0.55;
+                liftMotorTime = 1.25;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14.675, 24.762)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 1.15;
+                liftMotorTime = 1.80;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14.175, 24.762)).build();
                 break;
@@ -138,7 +138,7 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
         drive.followTrajectory(dropoffBlock2);
         delay(0.1);
         liftMotor.setPower(-1);
-        delay(2.3);
+        delay(1.7);
         liftMotor.setPower(-0.1);
         bucketServo.setPosition(0.67);
         delay(1.5);
@@ -153,5 +153,8 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
         Trajectory moveToWarehouse2 = drive.trajectoryBuilder(turnToWall2.end())
                 .lineTo(new Vector2d(3, -27.8)).build();
         drive.followTrajectory(moveToWarehouse2);
+        Trajectory finishedWarehouse = drive.trajectoryBuilder(moveToWarehouse2.end())
+                .lineToLinearHeading(new Pose2d(-25, -25, Math.toRadians(160))).build();
+        drive.followTrajectory(finishedWarehouse);
     }
 }
