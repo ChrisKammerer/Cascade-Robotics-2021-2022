@@ -87,7 +87,7 @@ public class RedAutoDuck extends LinearOpMode {
             case LEFT:
                 liftMotorTime = 0;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-17, 23.262)).build();
+                        .lineTo(new Vector2d(-15.5, 24.762)).build();
                 break;
             case MIDDLE:
                 liftMotorTime = 0.55;
@@ -95,7 +95,7 @@ public class RedAutoDuck extends LinearOpMode {
                         .lineTo(new Vector2d(-14.675, 24.762)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 1.15;
+                liftMotorTime = 1.25;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14.175, 24.762)).build();
                 break;
@@ -103,12 +103,12 @@ public class RedAutoDuck extends LinearOpMode {
         drive.setPoseEstimate(startPose);
         drive.followTrajectory(dropoffBlock);
         if(liftMotorTime!=0) {
-            delay(0.5);
+            delay(0.2);
             liftMotor.setPower(-1);
             delay(liftMotorTime);
             liftMotor.setPower(-0.1);
             bucketServo.setPosition(0.67);
-            delay(2);
+            delay(1.2);
             bucketServo.setPosition(0.2);
             liftMotor.setPower(1);
             delay(liftMotorTime-0.3);
@@ -116,7 +116,7 @@ public class RedAutoDuck extends LinearOpMode {
         }
         else{
             bucketServo.setPosition(0.65);
-            delay(1.7);
+            delay(1.2);
             bucketServo.setPosition(0.2);
         }
         Trajectory moveToSpinner = drive.trajectoryBuilder(dropoffBlock.end())

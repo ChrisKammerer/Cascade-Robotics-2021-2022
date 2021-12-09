@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.drive;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
+import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -65,7 +66,7 @@ public class TeleOpFieldCentric extends LinearOpMode {
         waitForStart();
 
         bucketServo.setPosition(0.2);
-
+        Pose2d returnToPosition = null;
 
         if (isStopRequested()) return;
         while (opModeIsActive() && !isStopRequested()) {
@@ -90,8 +91,16 @@ public class TeleOpFieldCentric extends LinearOpMode {
             if(gamepad1.dpad_down&&bucketPosition<1) {
                 bucketPosition += 0.005;
             }
+            if(gamepad1.x)
             bucketServo.setPosition(bucketPosition);
-
+            if(gamepad1.a){
+                returnToPosition = drive.getPoseEstimate();
+            }
+            if(gamepad1.b){
+                Trajectory traj = drive.trajectoryBuilder(drive.getPoseEstimate())
+                        .lineToLinearHeading(returnToPosition).build();
+                drive.followTrajectory(traj);
+            }
 
             //Controller 2
             if(gamepad2.b)
