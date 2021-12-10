@@ -124,6 +124,9 @@ public class RedAutoWarehouse extends LinearOpMode {
         Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
                 .lineTo(new Vector2d(0, 38)).build();
         drive.followTrajectory(moveToWarehouse);
+        Trajectory finishWarehouse = drive.trajectoryBuilder(moveToWarehouse.end())
+                .lineToLinearHeading(new Pose2d(-25, 38, Math.toRadians(180))).build();
+        drive.followTrajectory(finishWarehouse);
 
         /*
         intakeMotor.setPower(1);

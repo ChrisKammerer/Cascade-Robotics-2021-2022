@@ -92,7 +92,7 @@ public class RedAutoDuck extends LinearOpMode {
             case MIDDLE:
                 liftMotorTime = 0.55;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.675, 24.762)).build();
+                        .lineTo(new Vector2d(-14.275, 24.762)).build();
                 break;
             case RIGHT:
                 liftMotorTime = 1.25;
