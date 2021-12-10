@@ -84,6 +84,8 @@ public class TeleOpFieldCentric extends LinearOpMode {
                 bucketServo.setPosition(0.65);
             if(gamepad1.left_bumper)
                 bucketServo.setPosition(0.2);
+            if(gamepad1.dpad_up)
+                bucketServo.setPosition(0.55);
             //Controller 2
             if(gamepad2.b)
                 intakeMotor.setPower(1);
