@@ -119,18 +119,25 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
             delay(1.7);
             bucketServo.setPosition(0.2);
         }
-        Trajectory turnToWall = drive.trajectoryBuilder(dropoffBlock.end())
-                .lineToLinearHeading(new Pose2d(0, 23.116, Math.toRadians(-90))).build();
-        drive.followTrajectory(turnToWall);
-        Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
-                .lineTo(new Vector2d(2, -29.8)).build();
-        drive.followTrajectory(moveToWarehouse);
+//        Trajectory turnToWall = drive.trajectoryBuilder(dropoffBlock.end())
+//                .lineToLinearHeading(new Pose2d(0, 23.116, Math.toRadians(-90))).build();
+//        drive.followTrajectory(turnToWall);
+//        Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
+//                .lineTo(new Vector2d(2, -29.8)).build();
+//        drive.followTrajectory(moveToWarehouse);
+        Trajectory splineToWarehouse = drive.trajectoryBuilder(dropoffBlock.end())
+                // SplineTo the wall
+                .splineTo(new Vector2d(0,23.116), Math.toRadians(-100))
+                // SplineTo the warehouse
+                .splineTo(new Vector2d(2, -29.8), Math.toRadians(-90))
+                .build();
+        drive.followTrajectory(splineToWarehouse);
         intakeMotor.setPower(1);
         delay(1.7);
         intakeMotor.setPower(-1);
         delay(1);
         intakeMotor.setPower(0);
-        Trajectory leaveWarehouse = drive.trajectoryBuilder(moveToWarehouse.end())
+        Trajectory leaveWarehouse = drive.trajectoryBuilder(splineToWarehouse.end())
                 .lineToLinearHeading(new Pose2d(3, 23.116, Math.toRadians(-95))).build();
         drive.followTrajectory(leaveWarehouse);
         Trajectory dropoffBlock2 = drive.trajectoryBuilder(leaveWarehouse.end())
