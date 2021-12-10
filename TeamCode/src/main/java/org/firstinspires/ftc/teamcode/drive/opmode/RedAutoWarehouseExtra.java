@@ -84,19 +84,19 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
         double liftMotorTime = 0.0;
         switch (detector.getLocation()){
             case LEFT:
-                liftMotorTime = 0.0;
+                liftMotorTime = 0.8;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-17, -22.116)).build();
+                        .lineTo(new Vector2d(-14.037, -23.085)).build();
                 break;
             case MIDDLE:
-                liftMotorTime = .55;
+                liftMotorTime = 1.1;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.675, -22.116)).build();
+                        .lineTo(new Vector2d(-13.177, -23.084)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 1.15;
+                liftMotorTime = 1.65;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.175, -22.116)).build();
+                        .lineTo(new Vector2d(-15.463, -23.279)).build();
                 break;
         }
         drive.setPoseEstimate(startPose);
@@ -119,36 +119,37 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
             bucketServo.setPosition(0.2);
         }
         Trajectory turnToWall = drive.trajectoryBuilder(dropoffBlock.end())
-                .lineToLinearHeading(new Pose2d(-0, -23.116, Math.toRadians(90))).build();
+                .lineToLinearHeading(new Pose2d(0, -23.116, Math.toRadians(90))).build();
         drive.followTrajectory(turnToWall);
         Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
-                .lineTo(new Vector2d(0, 38)).build();
+                .lineTo(new Vector2d(0, 29)).build();
         drive.followTrajectory(moveToWarehouse);
         intakeMotor.setPower(1);
-        delay(2);
+        delay(1.7);
+        intakeMotor.setPower(-1);
+        delay(1);
         intakeMotor.setPower(0);
         Trajectory leaveWarehouse = drive.trajectoryBuilder(moveToWarehouse.end())
-                .lineTo(new Vector2d(0, -0)).build();
+                .lineToLinearHeading(new Pose2d(-3, -23.116, Math.toRadians(90))).build();
         drive.followTrajectory(leaveWarehouse);
         Trajectory dropoffBlock2 = drive.trajectoryBuilder(leaveWarehouse.end())
-                .lineToLinearHeading(new Pose2d(-13.775, -22.116, Math.toRadians(0))).build();
+                .lineToLinearHeading(new Pose2d(-15.463, -23.279, Math.toRadians(0))).build();
         drive.followTrajectory(dropoffBlock2);
         delay(0.5);
         liftMotor.setPower(-1);
-        delay(2.2);
+        delay(1.65);
         liftMotor.setPower(-0.1);
         bucketServo.setPosition(0.65);
-        delay(2);
+        delay(1.8);
         bucketServo.setPosition(0.2);
         liftMotor.setPower(1);
-        delay(1.8);
+        delay(1.65);
         liftMotor.setPower(0);
-
         Trajectory turnToWall2 = drive.trajectoryBuilder(dropoffBlock2.end())
-                .lineToLinearHeading(new Pose2d(-0, -23.116, Math.toRadians(90))).build();
+                .lineToLinearHeading(new Pose2d(-3, -23.116, Math.toRadians(90))).build();
         drive.followTrajectory(turnToWall2);
         Trajectory moveToWarehouse2 = drive.trajectoryBuilder(turnToWall2.end())
-                .lineTo(new Vector2d(0, 44)).build();
+                .lineTo(new Vector2d(0, 29)).build();
         drive.followTrajectory(moveToWarehouse2);
 
     }

@@ -84,17 +84,17 @@ public class BlueAutoWarehouse extends LinearOpMode {
 
         switch (detector.getLocation()){
             case LEFT:
-                liftMotorTime = 0;
+                liftMotorTime = 0.80;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-15.5, 24.762)).build();
+                        .lineTo(new Vector2d(-11.456, 28.090)).build();
                 break;
             case MIDDLE:
-                liftMotorTime = 0.55;
+                liftMotorTime = 1.10;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.275, 24.762)).build();
+                        .lineTo(new Vector2d(-12.081, 26.167)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 1.25;
+                liftMotorTime = 1.65;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14.175, 24.762)).build();
                 break;
