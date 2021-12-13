@@ -1,22 +1,22 @@
-package org.firstinspires.ftc.teamcode.drive.opmode;
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
-import com.acmerobotics.roadrunner.trajectory.Trajectory;
-import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
+        package org.firstinspires.ftc.teamcode.drive.opmode;
+        import com.acmerobotics.dashboard.FtcDashboard;
+        import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
+        import com.acmerobotics.roadrunner.geometry.Pose2d;
+        import com.acmerobotics.roadrunner.geometry.Vector2d;
+        import com.acmerobotics.roadrunner.trajectory.Trajectory;
+        import com.acmerobotics.roadrunner.trajectory.TrajectoryBuilder;
+        import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+        import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+        import com.qualcomm.robotcore.hardware.DcMotor;
+        import com.qualcomm.robotcore.hardware.Servo;
+        import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.drive.opmode.DuckDetector;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
+        import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+        import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+        import org.firstinspires.ftc.teamcode.drive.opmode.DuckDetector;
+        import org.openftc.easyopencv.OpenCvCamera;
+        import org.openftc.easyopencv.OpenCvCameraFactory;
+        import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Autonomous(name = "Blue Warehouse Side EXTRA", group = "Auto")
 public class BlueAutoWarehouseEXTRA extends LinearOpMode {
@@ -87,15 +87,15 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
             case LEFT:
                 liftMotorTime = 0.80;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-11.456, 28.090)).build();
+                        .lineTo(new Vector2d(-10.456, 28.090)).build();
                 break;
             case MIDDLE:
-                liftMotorTime = 1.25;
+                liftMotorTime = 1.10;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.675, 24.762)).build();
+                        .lineTo(new Vector2d(-12.081, 26.167)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 1.80;
+                liftMotorTime = 1.65;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14.175, 24.762)).build();
                 break;
@@ -119,33 +119,33 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
             delay(1.7);
             bucketServo.setPosition(0.2);
         }
-//        Trajectory turnToWall = drive.trajectoryBuilder(dropoffBlock.end())
-//                .lineToLinearHeading(new Pose2d(0, 23.116, Math.toRadians(-90))).build();
-//        drive.followTrajectory(turnToWall);
-//        Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
-//                .lineTo(new Vector2d(2, -29.8)).build();
-//        drive.followTrajectory(moveToWarehouse);
-        Trajectory splineToWarehouse = drive.trajectoryBuilder(dropoffBlock.end())
-                // SplineTo the wall
-                .splineTo(new Vector2d(0,23.116), Math.toRadians(-100))
-                // SplineTo the warehouse
-                .splineTo(new Vector2d(2, -29.8), Math.toRadians(-90))
-                .build();
-        drive.followTrajectory(splineToWarehouse);
+        Trajectory turnToWall = drive.trajectoryBuilder(dropoffBlock.end())
+                .lineToLinearHeading(new Pose2d(0, 23.116, Math.toRadians(-90))).build();
+        drive.followTrajectory(turnToWall);
+        Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
+                .lineTo(new Vector2d(2, -29.8)).build();
+        drive.followTrajectory(moveToWarehouse);
+//        Trajectory splineToWarehouse = drive.trajectoryBuilder(dropoffBlock.end())
+//                // SplineTo the wall
+//                .splineTo(new Vector2d(0,23.116), Math.toRadians(-100))
+//                // SplineTo the warehouse
+//                .splineTo(new Vector2d(2, -29.8), Math.toRadians(-90))
+//                .build();
+//        drive.followTrajectory(splineToWarehouse);
         intakeMotor.setPower(1);
         delay(1.7);
         intakeMotor.setPower(-1);
         delay(1);
         intakeMotor.setPower(0);
-        Trajectory leaveWarehouse = drive.trajectoryBuilder(splineToWarehouse.end())
-                .lineToLinearHeading(new Pose2d(3, 23.116, Math.toRadians(-95))).build();
+        Trajectory leaveWarehouse = drive.trajectoryBuilder(moveToWarehouse.end())
+                .lineToLinearHeading(new Pose2d(1, 23.116, Math.toRadians(-90))).build();
         drive.followTrajectory(leaveWarehouse);
         Trajectory dropoffBlock2 = drive.trajectoryBuilder(leaveWarehouse.end())
                 .lineToLinearHeading(new Pose2d(-14.175, 23.762, Math.toRadians(10))).build();
         drive.followTrajectory(dropoffBlock2);
         delay(0.1);
         liftMotor.setPower(-1);
-        delay(1.7);
+        delay(1.65);
         liftMotor.setPower(-0.1);
         bucketServo.setPosition(0.67);
         delay(1.5);
@@ -155,13 +155,13 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
         liftMotor.setPower(0);
 
         Trajectory turnToWall2 = drive.trajectoryBuilder(dropoffBlock2.end())
-                .lineToLinearHeading(new Pose2d(3, 23.116, Math.toRadians(-90))).build();
+                .lineToLinearHeading(new Pose2d(4, 23.116, Math.toRadians(-95))).build();
         drive.followTrajectory(turnToWall2);
         Trajectory moveToWarehouse2 = drive.trajectoryBuilder(turnToWall2.end())
-                .lineTo(new Vector2d(3, -27.8)).build();
+                .lineTo(new Vector2d(1, -27.8)).build();
         drive.followTrajectory(moveToWarehouse2);
         Trajectory finishedWarehouse = drive.trajectoryBuilder(moveToWarehouse2.end())
-                .lineToLinearHeading(new Pose2d(-25, -25, Math.toRadians(160))).build();
+                .lineToLinearHeading(new Pose2d(-25, -25, Math.toRadians(165))).build();
         drive.followTrajectory(finishedWarehouse);
     }
 }

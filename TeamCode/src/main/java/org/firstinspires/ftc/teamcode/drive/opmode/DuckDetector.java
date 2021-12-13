@@ -28,7 +28,7 @@ public class DuckDetector extends OpenCvPipeline {
             new Point(920, 200),
             new Point(1170, 650)
     );
-    static double PERCENT_COLOR_THRESHOLD = 0.16;
+    static double PERCENT_COLOR_THRESHOLD = 0.14;
   
     public DuckDetector(Telemetry t){ telemetry = t;}
 

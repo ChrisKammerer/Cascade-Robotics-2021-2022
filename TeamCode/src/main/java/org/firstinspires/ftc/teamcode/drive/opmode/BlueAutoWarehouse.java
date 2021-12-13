@@ -91,7 +91,7 @@ public class BlueAutoWarehouse extends LinearOpMode {
             case MIDDLE:
                 liftMotorTime = 0.55;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.275, 24.762)).build();
+                        .lineTo(new Vector2d(-14.575, 24.762)).build();
                 break;
             case RIGHT:
                 liftMotorTime = 1.25;

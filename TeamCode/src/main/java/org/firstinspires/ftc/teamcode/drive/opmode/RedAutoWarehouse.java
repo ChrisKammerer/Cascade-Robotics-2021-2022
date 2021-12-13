@@ -91,7 +91,7 @@ public class RedAutoWarehouse extends LinearOpMode {
             case MIDDLE:
                 liftMotorTime = .55;
                 dropoffTraj = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-14.675, -23.116)).build();
+                        .lineTo(new Vector2d(-14.175, -23.116)).build();
                 break;
             case RIGHT:
                 liftMotorTime = 1.25;
@@ -122,7 +122,7 @@ public class RedAutoWarehouse extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(-0, -23.116, Math.toRadians(90))).build();
         drive.followTrajectory(turnToWall);
         Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
-                .lineTo(new Vector2d(0, 38)).build();
+                .lineTo(new Vector2d(1, 38)).build();
         drive.followTrajectory(moveToWarehouse);
         Trajectory finishWarehouse = drive.trajectoryBuilder(moveToWarehouse.end())
                 .lineToLinearHeading(new Pose2d(-25, 38, Math.toRadians(180))).build();
