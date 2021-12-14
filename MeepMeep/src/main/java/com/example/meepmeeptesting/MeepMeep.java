@@ -15,12 +15,13 @@ class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 11.75)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(12.7, 61.6, Math.toRadians(90)))
-                                .lineToConstantHeading(new Vector2d(-10,42.5))
+                                .lineToConstantHeading(new Vector2d(-10,47.5))
                                 // SplineTo the warehouse
-                                .splineTo(new Vector2d(50, 62.7), Math.toRadians(0))
+                                .splineToLinearHeading(new Pose2d(12.7, 61.6), 0)
+                                .splineToConstantHeading(new Vector2d(41.6, 63), 0)
+                                .splineToConstantHeading(new Vector2d(12.7, 61.6), 0)
                                 .build()
                 );
-
         meepMeep.setBackground(MeepMeep.Background.FIELD_FREIGHTFRENZY_ADI_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
