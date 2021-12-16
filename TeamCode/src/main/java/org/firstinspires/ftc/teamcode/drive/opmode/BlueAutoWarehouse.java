@@ -118,14 +118,15 @@ public class BlueAutoWarehouse extends LinearOpMode {
             delay(1.7);
             bucketServo.setPosition(0.2);
         }
-        Trajectory turnToWall = drive.trajectoryBuilder(dropoffBlock.end())
-                .lineToLinearHeading(new Pose2d(1, 23.116, Math.toRadians(-90))).build();
-        drive.followTrajectory(turnToWall);
-        Trajectory moveToWarehouse = drive.trajectoryBuilder(turnToWall.end())
-                .lineTo(new Vector2d(1, -27.8)).build();
-        drive.followTrajectory(moveToWarehouse);
-        Trajectory finishedWarehouse = drive.trajectoryBuilder(moveToWarehouse.end())
-                .lineToLinearHeading(new Pose2d(-25, -25, Math.toRadians(164.5))).build();
+        Trajectory splineToWarehouse = drive.trajectoryBuilder(dropoffBlock.end())
+                // SplineTo the wall
+                .splineTo(new Vector2d(0,23.116), Math.toRadians(-100))
+                // SplineTo the warehouse
+                .splineTo(new Vector2d(0, -29.8), Math.toRadians(-110))
+                .build();
+        drive.followTrajectory(splineToWarehouse);
+        Trajectory finishedWarehouse = drive.trajectoryBuilder(splineToWarehouse.end())
+                .lineToLinearHeading(new Pose2d(-25, -25, Math.toRadians(167.5))).build();
         drive.followTrajectory(finishedWarehouse);
     }
 }
