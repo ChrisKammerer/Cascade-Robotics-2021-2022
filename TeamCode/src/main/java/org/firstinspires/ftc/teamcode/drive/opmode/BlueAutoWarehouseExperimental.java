@@ -110,17 +110,17 @@ public class BlueAutoWarehouseExperimental extends LinearOpMode implements Runna
             liftMotor.setPower(-1);
             delay(liftMotorTime);
             liftMotor.setPower(-0.1);
-            bucketServo.setPosition(0.67);
+            bucketServo.setPosition(0.8);
             delay(1.4);
-            bucketServo.setPosition(0.2);
+            bucketServo.setPosition(0);
             liftMotor.setPower(1);
             delay(liftMotorTime-0.3);
             liftMotor.setPower(0);
         }
         else{
-            bucketServo.setPosition(0.65);
+            bucketServo.setPosition(0.8);
             delay(1.7);
-            bucketServo.setPosition(0.2);
+            bucketServo.setPosition(0);
         }
         Trajectory splineToWarehouse = drive.trajectoryBuilder(dropoffBlock.end())
                 // SplineTo the wall
@@ -143,9 +143,9 @@ public class BlueAutoWarehouseExperimental extends LinearOpMode implements Runna
         liftMotor.setPower(-1);
         delay(1.7);
         liftMotor.setPower(-0.1);
-        bucketServo.setPosition(0.67);
+        bucketServo.setPosition(0.8);
         delay(1.5);
-        bucketServo.setPosition(0.2);
+        bucketServo.setPosition(0);
         liftMotor.setPower(1);
         delay(1.8);
         liftMotor.setPower(0);

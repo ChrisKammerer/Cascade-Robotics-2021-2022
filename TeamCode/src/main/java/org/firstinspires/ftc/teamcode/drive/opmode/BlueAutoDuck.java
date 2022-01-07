@@ -106,17 +106,17 @@ public class BlueAutoDuck extends LinearOpMode {
             liftMotor.setPower(-1);
             delay(liftMotorTime);
             liftMotor.setPower(-0.1);
-            bucketServo.setPosition(0.67);
+            bucketServo.setPosition(0.8);
             delay(2);
-            bucketServo.setPosition(0.2);
+            bucketServo.setPosition(0);
             liftMotor.setPower(1);
             delay(liftMotorTime-0.3);
             liftMotor.setPower(0);
         }
         else{
-            bucketServo.setPosition(0.65);
+            bucketServo.setPosition(0.8);
             delay(1.7);
-            bucketServo.setPosition(0.2);
+            bucketServo.setPosition(0);
         }
         Trajectory moveToSpinner = drive.trajectoryBuilder(dropoffBlock.end())
                 .lineToLinearHeading(new Pose2d(-4.794, 27.7, Math.toRadians(90))).build();
