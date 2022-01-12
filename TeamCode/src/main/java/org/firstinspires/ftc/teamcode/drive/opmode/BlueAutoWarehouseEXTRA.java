@@ -141,7 +141,7 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(0, 23.116, Math.toRadians(-90))).build();
         drive.followTrajectory(leaveWarehouse);
         Trajectory dropoffBlock2 = drive.trajectoryBuilder(leaveWarehouse.end())
-                .lineToLinearHeading(new Pose2d(-12.17, 24.762, Math.toRadians(0))).build();
+                .lineToLinearHeading(new Pose2d(-11.175, 26.762, Math.toRadians(10))).build();
         drive.followTrajectory(dropoffBlock2);
         delay(0.1);
         liftMotor.setPower(-1);
@@ -171,7 +171,7 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
                 .build();
         drive.followTrajectory(splineToWarehouse2);
         Trajectory finishedWarehouse = drive.trajectoryBuilder(splineToWarehouse2.end())
-                .lineToLinearHeading(new Pose2d(-20, -20, Math.toRadians(165.5))).build();
+                .lineToLinearHeading(new Pose2d(-22, -22, Math.toRadians(165.5))).build();
         drive.followTrajectory(finishedWarehouse);
     }
 }
