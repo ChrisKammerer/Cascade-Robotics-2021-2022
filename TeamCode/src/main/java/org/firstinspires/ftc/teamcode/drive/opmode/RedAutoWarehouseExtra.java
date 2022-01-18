@@ -126,9 +126,9 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
 //        drive.followTrajectory(moveToWarehouse);
         Trajectory splineToWarehouse = drive.trajectoryBuilder(dropoffBlock.end())
                 // SplineTo the wall
-                .splineTo(new Vector2d(0, -16.520), Math.toRadians(100))
+                .splineTo(new Vector2d(3, -16.520), Math.toRadians(100))
                 // SplineTo the warehouse
-                .splineTo(new Vector2d(0, 37.369), Math.toRadians(110))
+                .splineTo(new Vector2d(3, 37.369), Math.toRadians(90))
                 .build();
         drive.followTrajectory(splineToWarehouse);
         intakeMotor.setPower(1);
@@ -137,7 +137,7 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
         delay(1);
         intakeMotor.setPower(0);
         Trajectory leaveWarehouse = drive.trajectoryBuilder(splineToWarehouse.end())
-                .lineToLinearHeading(new Pose2d(1, -23.116, Math.toRadians(90))).build();
+                .lineToLinearHeading(new Pose2d(5, -23.116, Math.toRadians(90))).build();
         drive.followTrajectory(leaveWarehouse);
         Trajectory dropoffBlock2 = drive.trajectoryBuilder(leaveWarehouse.end())
                 .lineToLinearHeading(new Pose2d(-10.693, -22.834, Math.toRadians(-12))).build();
@@ -160,9 +160,9 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
 //        drive.followTrajectory(moveToWarehouse2);
         Trajectory splineToWarehouse2 = drive.trajectoryBuilder(dropoffBlock.end())
                 // SplineTo the wall
-                .splineTo(new Vector2d(5,-16.520), Math.toRadians(100))
+                .splineTo(new Vector2d(3,-16.520), Math.toRadians(100))
                 // SplineTo the warehouse
-                .splineTo(new Vector2d(5, 34.369), Math.toRadians(110))
+                .splineTo(new Vector2d(3, 34.369), Math.toRadians(110))
                 .build();
         drive.followTrajectory(splineToWarehouse2);
         Trajectory finishedWarehouse = drive.trajectoryBuilder(splineToWarehouse2.end())
