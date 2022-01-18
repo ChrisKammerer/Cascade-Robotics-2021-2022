@@ -86,17 +86,17 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
             case LEFT:
                 liftMotorTime = 0.60;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-11.033, -22.648)).build();
+                        .lineTo(new Vector2d(-12.033, -22.648)).build();
                 break;
             case MIDDLE:
                 liftMotorTime = 1.1;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-10.693, -19.834)).build();
+                        .lineTo(new Vector2d(-12.693, -22.834)).build();
                 break;
             case RIGHT:
                 liftMotorTime = 1.65;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
-                        .lineTo(new Vector2d(-10.693, -19.834)).build();
+                        .lineTo(new Vector2d(-12.693, -22.834)).build();
                 break;
         }
         drive.setPoseEstimate(startPose);
@@ -128,7 +128,7 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
                 // SplineTo the wall
                 .splineTo(new Vector2d(0, -16.520), Math.toRadians(100))
                 // SplineTo the warehouse
-                .splineTo(new Vector2d(0, 32.369), Math.toRadians(110))
+                .splineTo(new Vector2d(0, 37.369), Math.toRadians(110))
                 .build();
         drive.followTrajectory(splineToWarehouse);
         intakeMotor.setPower(1);
@@ -137,10 +137,10 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
         delay(1);
         intakeMotor.setPower(0);
         Trajectory leaveWarehouse = drive.trajectoryBuilder(splineToWarehouse.end())
-                .lineToLinearHeading(new Pose2d(-3, -23.116, Math.toRadians(90))).build();
+                .lineToLinearHeading(new Pose2d(1, -23.116, Math.toRadians(90))).build();
         drive.followTrajectory(leaveWarehouse);
         Trajectory dropoffBlock2 = drive.trajectoryBuilder(leaveWarehouse.end())
-                .lineToLinearHeading(new Pose2d(-10.693, -19.834, Math.toRadians(10))).build();
+                .lineToLinearHeading(new Pose2d(-10.693, -22.834, Math.toRadians(-12))).build();
         drive.followTrajectory(dropoffBlock2);
         delay(0.5);
         liftMotor.setPower(-1);
@@ -160,13 +160,13 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
 //        drive.followTrajectory(moveToWarehouse2);
         Trajectory splineToWarehouse2 = drive.trajectoryBuilder(dropoffBlock.end())
                 // SplineTo the wall
-                .splineTo(new Vector2d(4.5,-23.116), Math.toRadians(100))
+                .splineTo(new Vector2d(5,-16.520), Math.toRadians(100))
                 // SplineTo the warehouse
-                .splineTo(new Vector2d(5, 29.8), Math.toRadians(110))
+                .splineTo(new Vector2d(5, 34.369), Math.toRadians(110))
                 .build();
         drive.followTrajectory(splineToWarehouse2);
         Trajectory finishedWarehouse = drive.trajectoryBuilder(splineToWarehouse2.end())
-                .lineToLinearHeading(new Pose2d(-19, 31, Math.toRadians(165.5))).build();
+                .lineToLinearHeading(new Pose2d(-19, 31, Math.toRadians(175.5))).build();
         drive.followTrajectory(finishedWarehouse);
 
     }
