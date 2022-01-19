@@ -95,7 +95,7 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
                         .lineTo(new Vector2d(-12.081, 26.167)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 1.65;
+                liftMotorTime = 1.35;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-14.175, 24.762)).build();
                 break;
@@ -127,9 +127,9 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
 //        drive.followTrajectory(moveToWarehouse);
         Trajectory splineToWarehouse = drive.trajectoryBuilder(dropoffBlock.end())
                 // SplineTo the wall
-                .splineTo(new Vector2d(0, 23.116), Math.toRadians(-100))
+                .splineTo(new Vector2d(.5, 23.116), Math.toRadians(-90))
                 // SplineTo the warehouse
-                .splineTo(new Vector2d(0, -29.8), Math.toRadians(-110))
+                .splineTo(new Vector2d(2.5 , -29.8), Math.toRadians(-90))
                 .build();
         drive.followTrajectory(splineToWarehouse);
         intakeMotor.setPower(1);
@@ -145,13 +145,13 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
         drive.followTrajectory(dropoffBlock2);
         delay(0.1);
         liftMotor.setPower(-1);
-        delay(1.65);
+        delay(1.35);
         liftMotor.setPower(-0.1);
         bucketServo.setPosition(0.8);
         delay(1.5);
         bucketServo.setPosition(0);
         liftMotor.setPower(1);
-        delay(1.8);
+        delay(1.4);
         liftMotor.setPower(0);
 
 //        Trajectory turnToWall2 = drive.trajectoryBuilder(dropoffBlock2.end())
@@ -165,9 +165,9 @@ public class BlueAutoWarehouseEXTRA extends LinearOpMode {
 //        drive.followTrajectory(finishedWarehouse);
         Trajectory splineToWarehouse2 = drive.trajectoryBuilder(dropoffBlock.end())
                 // SplineTo the wall
-                .splineTo(new Vector2d(4.5,23.116), Math.toRadians(-100))
+                .splineTo(new Vector2d(3,23.116), Math.toRadians(-90))
                 // SplineTo the warehouse
-                .splineTo(new Vector2d(5, -29.8), Math.toRadians(-110))
+                .splineTo(new Vector2d(4, -29.8), Math.toRadians(-110))
                 .build();
         drive.followTrajectory(splineToWarehouse2);
         Trajectory finishedWarehouse = drive.trajectoryBuilder(splineToWarehouse2.end())
