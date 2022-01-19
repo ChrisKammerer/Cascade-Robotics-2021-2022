@@ -128,7 +128,7 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
                 // SplineTo the wall
                 .splineTo(new Vector2d(3, -16.520), Math.toRadians(100))
                 // SplineTo the warehouse
-                .splineTo(new Vector2d(3, 37.369), Math.toRadians(90))
+                .splineTo(new Vector2d(3, 36.369), Math.toRadians(90))
                 .build();
         drive.followTrajectory(splineToWarehouse);
         intakeMotor.setPower(1);
@@ -140,7 +140,7 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(5, -23.116, Math.toRadians(90))).build();
         drive.followTrajectory(leaveWarehouse);
         Trajectory dropoffBlock2 = drive.trajectoryBuilder(leaveWarehouse.end())
-                .lineToLinearHeading(new Pose2d(-10.693, -22.834, Math.toRadians(-12))).build();
+                .lineToLinearHeading(new Pose2d(-11.8, -22.834, Math.toRadians(-12))).build();
         drive.followTrajectory(dropoffBlock2);
         delay(0.5);
         liftMotor.setPower(-1);
