@@ -140,7 +140,7 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(5, -23.116, Math.toRadians(90))).build();
         drive.followTrajectory(leaveWarehouse);
         Trajectory dropoffBlock2 = drive.trajectoryBuilder(leaveWarehouse.end())
-                .lineToLinearHeading(new Pose2d(-11.8, -22.834, Math.toRadians(-12))).build();
+                .lineToLinearHeading(new Pose2d(-13.8, -22.834, Math.toRadians(-12))).build();
         drive.followTrajectory(dropoffBlock2);
         delay(0.5);
         liftMotor.setPower(-1);
