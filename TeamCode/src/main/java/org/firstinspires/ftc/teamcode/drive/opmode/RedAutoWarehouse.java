@@ -94,7 +94,7 @@ public class RedAutoWarehouse extends LinearOpMode {
                         .lineTo(new Vector2d(-12.693, -22.834)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 1.65;
+                liftMotorTime = 1.4;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-12.693, -22.834)).build();
                 break;

@@ -94,7 +94,7 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
                         .lineTo(new Vector2d(-12.693, -22.834)).build();
                 break;
             case RIGHT:
-                liftMotorTime = 1.65;
+                liftMotorTime = 1.4;
                 dropoffBlock = drive.trajectoryBuilder(startPose)
                         .lineTo(new Vector2d(-12.693, -22.834)).build();
                 break;
@@ -144,13 +144,13 @@ public class RedAutoWarehouseExtra extends LinearOpMode {
         drive.followTrajectory(dropoffBlock2);
         delay(0.5);
         liftMotor.setPower(-1);
-        delay(1.65);
+        delay(1.4);
         liftMotor.setPower(-0.1);
         bucketServo.setPosition(0.8);
         delay(1.8);
         bucketServo.setPosition(0);
         liftMotor.setPower(1);
-        delay(1.65);
+        delay(1.35);
         liftMotor.setPower(0);
 //        Trajectory turnToWall2 = drive.trajectoryBuilder(dropoffBlock2.end())
 //                .lineToLinearHeading(new Pose2d(-3, -23.116, Math.toRadians(90))).build();
